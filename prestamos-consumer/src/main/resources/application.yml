@@ -1,6 +1,31 @@
 server:
   port: 8100
+
 spring:
+  # Configuración de base de datos
+  datasource:
+    url: jdbc:mysql://localhost:3306/prestamos_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  # Configuración de JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update  # Crea/actualiza tablas automáticamente
+    show-sql: true     # Muestra las consultas SQL en logs
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true  # Formatea las consultas SQL en logs
+        
+  # Configuración de Kafka
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: prestamos-consumer-group
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "com.djg.backend.model.dto"

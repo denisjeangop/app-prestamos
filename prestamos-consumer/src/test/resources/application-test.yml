@@ -1,0 +1,25 @@
+# Configuración para pruebas - Base de datos en memoria H2
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Recrea la BD cada vez para tests limpios
+    show-sql: false  # Reduce el ruido en los logs de test
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        
+  # Configuración de Kafka para tests (EmbeddedKafka)
+  kafka:
+    consumer:
+      bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
+      auto-offset-reset: earliest
+      
+  h2:
+    console:
+      enabled: true  # Para debugging en tests si es necesario
