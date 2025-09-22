@@ -32,6 +32,9 @@ public class PrestamoProcessEntity {
     /**
      * Datos del préstamo procesado
      */
+    @Column(nullable = false)
+    private String dni;
+    
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal monto;
 

@@ -17,6 +17,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PrestamoRequestDto {
+    @NotNull(message = "El DNI no puede ser nulo.")
+    private String dni;
+    
     @NotNull(message = "El monto no puede ser nulo.")
     @Min(value = 1, message = "El monto debe ser mayor que cero.")
     @Max(value = 100_000, message = "No se puede solicitar un préstamo superior a cien mil euros.")

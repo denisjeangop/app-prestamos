@@ -84,6 +84,7 @@ public class PrestamoServiceImpl implements PrestamoService {
             
             // Crear entidad para persistir
             PrestamoProcessEntity entity = PrestamoProcessEntity.builder()
+                    .dni(requestDto.getDni())
                     .monto(BigDecimal.valueOf(requestDto.getMonto()).setScale(2, RoundingMode.HALF_UP))
                     .meses(requestDto.getMeses())
                     .cuotaMensual(BigDecimal.valueOf(responseDto.getTotalDevolver() / requestDto.getMeses()).setScale(2, RoundingMode.HALF_UP))
@@ -109,6 +110,7 @@ public class PrestamoServiceImpl implements PrestamoService {
             
             // Guardar el error para auditoría
             PrestamoProcessEntity errorEntity = PrestamoProcessEntity.builder()
+                    .dni(requestDto.getDni())
                     .monto(BigDecimal.valueOf(requestDto.getMonto()).setScale(2, RoundingMode.HALF_UP))
                     .meses(requestDto.getMeses())
                     .estado(PrestamoProcessEntity.EstadoPrestamo.ERROR)

@@ -35,4 +35,8 @@ public class PrestamoController {
         prestamoService.enviarPrestamo(prestamoRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("Solicitud de préstamo enviada correctamente.");
     }
+
+
+
+
 }

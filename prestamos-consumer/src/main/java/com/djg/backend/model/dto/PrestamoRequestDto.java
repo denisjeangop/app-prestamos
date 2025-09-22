@@ -18,6 +18,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PrestamoRequestDto {
     /**
+     * DNI del cliente solicitante del préstamo.
+     */
+    @NotNull(message = "El DNI no puede ser nulo.")
+    private String dni;
+    
+    /**
      * Monto total solicitado para el préstamo.
      */
     @NotNull(message = "El monto no puede ser nulo.")
